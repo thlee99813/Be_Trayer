@@ -34,4 +34,16 @@ public class PlayerInputReader : MonoBehaviour
 
         return moveInput;
     }
+
+    public bool ReadShootPressedThisFrame()
+    {
+        // TODO: 좌클릭 입력 연결할 것
+        return false;
+    }
+
+    public Vector2 ReadPointerScreenPosition()
+    {
+        // TODO: 포인터 좌표 읽기 연결할 것
+        return Vector2.zero;
+    }
 }
