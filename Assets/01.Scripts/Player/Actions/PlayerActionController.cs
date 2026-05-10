@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInputReader))]
 [RequireComponent(typeof(PlayerAimController))]
 [RequireComponent(typeof(PlayerShootAction))]
+[RequireComponent(typeof(PlayerMovementController))]
 public class PlayerActionController : MonoBehaviour
 {
     [SerializeField] private PlayerInputReader _inputReader;
@@ -14,22 +15,20 @@ public class PlayerActionController : MonoBehaviour
 
     public PlayerActionContext Context => _context;
 
+    private void OnValidate()
+    {
+        _inputReader ??= GetComponent<PlayerInputReader>();
+        _aimController ??= GetComponent<PlayerAimController>();
+        _shootAction ??= GetComponent<PlayerShootAction>();
+        _projectileSpawnPoint ??= GetComponentInChildren<PlayerProjectileSpawnPoint>();
+    }
+
     private void Awake()
     {
-        if (_inputReader == null)
-        {
-            _inputReader = GetComponent<PlayerInputReader>();
-        }
-
-        if (_aimController == null)
-        {
-            _aimController = GetComponent<PlayerAimController>();
-        }
-
-        if (_shootAction == null)
-        {
-            _shootAction = GetComponent<PlayerShootAction>();
-        }
+        _inputReader ??= GetComponent<PlayerInputReader>();
+        _aimController ??= GetComponent<PlayerAimController>();
+        _shootAction ??= GetComponent<PlayerShootAction>();
+        _projectileSpawnPoint ??= GetComponentInChildren<PlayerProjectileSpawnPoint>();
     }
 
     private void Update()
@@ -47,8 +46,7 @@ public class PlayerActionController : MonoBehaviour
         // TODO: origin 기준 조준점 계산하고 Context에 저장할 것
         // TODO: 조준 방향 계산하고 Context에 저장할 것
         // TODO: 좌클릭 입력 시 공격 명령 생성 요청할 것
-        // TODO: 생성된 공격 명령을 실제 전투 또는 투사체 시스템에 연결할 것
-
+        // TODO: 생성된 공격 명령을 시스템에 연결할 것
         // TODO: 현재 상태에 따라 이동, 상호작용 함수 연결할 것
     }
 }

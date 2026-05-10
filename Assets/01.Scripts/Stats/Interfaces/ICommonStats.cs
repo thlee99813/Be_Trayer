@@ -1,5 +1,6 @@
 public interface ICommonStats
 {
-    int STR { get; }
+    int AttackPower { get; }
     int MaxHP { get; }
+    float MoveSpeed { get; }
 }
