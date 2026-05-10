@@ -58,7 +58,26 @@ Assets/01.Scripts/Frame/
  OffsetDuplicator.cs
  Singleton.cs
  TextUtil.cs
-Assets/TutorialInfo/Scripts/Readme.cs
+Assets/01.Scripts/Player/
+ PlayerActionContext.cs
+ PlayerActionController.cs
+ PlayerActionState.cs
+ PlayerAimController.cs
+ PlayerAttackCommand.cs
+ PlayerInputReader.cs
+ PlayerProjectileSpawnPoint.cs
+ PlayerShootAction.cs
+Assets/01.Scripts/Stats/Interfaces/
+ ICommonStats.cs
+ ICompanionStats.cs
+ IPlayerStats.cs
+Assets/01.Scripts/Stats/Values/
+ CommonStats.cs
+ CompanionStats.cs
+ PlayerStats.cs
+Assets/
+ 01.Scripts/UI/FadeOutUI.cs
+ TutorialInfo/Scripts/Readme.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]
