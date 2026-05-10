@@ -81,7 +81,6 @@ Assets/01.Scripts/UI/CampUIScript/
  CampUIView.cs
 Assets/01.Scripts/UI/
  FadeInOutUI.cs
- FadeOutUI.cs
  UIDebugTestController.cs
 Assets/TutorialInfo/Scripts/Readme.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
