@@ -50,14 +50,14 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 /warnaserror+:NU1605
 
 [sourceFiles]
+Assets/01.Scripts/Camera/
+ CameraController.cs
+ CameraDebugController.cs
 Assets/01.Scripts/Frame/
  Debugger.cs
  OffsetDuplicator.cs
  Singleton.cs
  TextUtil.cs
-Assets/01.Scripts/Stage/
- StageViewController.cs
- StageViewDebugInput.cs
 Assets/TutorialInfo/Scripts/Readme.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
