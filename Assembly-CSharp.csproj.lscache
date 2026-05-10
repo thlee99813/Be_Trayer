@@ -75,9 +75,15 @@ Assets/01.Scripts/Stats/Values/
  CommonStats.cs
  CompanionStats.cs
  PlayerStats.cs
-Assets/
- 01.Scripts/UI/FadeOutUI.cs
- TutorialInfo/Scripts/Readme.cs
+Assets/01.Scripts/UI/CampUIScript/
+ CampAllyDisplay.cs
+ CampUIController.cs
+ CampUIView.cs
+Assets/01.Scripts/UI/
+ FadeInOutUI.cs
+ FadeOutUI.cs
+ UIDebugTestController.cs
+Assets/TutorialInfo/Scripts/Readme.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]
