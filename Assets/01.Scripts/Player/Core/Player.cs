@@ -18,6 +18,12 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerShootAction _shootAction;
     [SerializeField] private PlayerProjectileSpawnPoint _projectileSpawnPoint;
 
+    [Header("Stats Definition")]
+    [SerializeField] private PlayerStatsDefinition _statsDefinition;
+
+    [Header("Runtime Stats")]
+    [SerializeField] private PlayerStats _runtimeStats = new();
+
     public Rigidbody Rigidbody => _rigidbody;
     public Collider BodyCollider => _bodyCollider;
     public PlayerActionController ActionController => _actionController;
@@ -25,15 +31,20 @@ public class Player : MonoBehaviour
     public PlayerAimController AimController => _aimController;
     public PlayerShootAction ShootAction => _shootAction;
     public PlayerProjectileSpawnPoint ProjectileSpawnPoint => _projectileSpawnPoint;
+    public PlayerStatsDefinition StatsDefinition => _statsDefinition;
+    public PlayerStats RuntimeStats => _runtimeStats;
+    public IPlayerStats Stats => _runtimeStats;
 
     private void OnValidate()
     {
         CacheComponents();
+        ApplyStatsDefinition();
     }
 
     private void Awake()
     {
         CacheComponents();
+        ApplyStatsDefinition();
     }
 
     private void CacheComponents()
@@ -45,6 +56,17 @@ public class Player : MonoBehaviour
         _aimController ??= GetComponent<PlayerAimController>();
         _shootAction ??= GetComponent<PlayerShootAction>();
         _projectileSpawnPoint ??= GetComponentInChildren<PlayerProjectileSpawnPoint>();
+        _runtimeStats ??= new PlayerStats();
+    }
+
+    private void ApplyStatsDefinition()
+    {
+        if (_statsDefinition == null || _runtimeStats == null)
+        {
+            return;
+        }
+
+        _runtimeStats.ApplyDefinition(_statsDefinition);
     }
 
     // TODO: 상호작용 컴포넌트 추가할 것

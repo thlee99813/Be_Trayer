@@ -6,7 +6,8 @@ public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private PlayerActionController _actionController;
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private float _moveSpeed = 5f;
+
+    private PlayerStats _runtimeStats;
 
     public Vector3 Velocity => _rigidbody.linearVelocity;
 
@@ -24,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         _actionController ??= GetComponent<PlayerActionController>();
         _rigidbody ??= GetComponent<Rigidbody>();
+        _runtimeStats ??= GetComponent<Player>()?.RuntimeStats;
     }
 
     private void FixedUpdate()
@@ -35,7 +37,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         // TODO: 카메라 기준 이동으로 바꿀지 결정 필요함
         Vector3 moveDirection = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
-        _rigidbody.linearVelocity = moveDirection * _moveSpeed;
+        float moveSpeed = _runtimeStats?.MoveSpeed ?? 0f;
+        _rigidbody.linearVelocity = moveDirection * moveSpeed;
     }
 
     public void Stop()
