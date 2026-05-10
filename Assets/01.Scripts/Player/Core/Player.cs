@@ -34,6 +34,9 @@ public class Player : MonoBehaviour
     public PlayerStatsDefinition StatsDefinition => _statsDefinition;
     public PlayerStats RuntimeStats => _runtimeStats;
     public IPlayerStats Stats => _runtimeStats;
+    public float AttackCooldownRemaining => _shootAction != null ? _shootAction.CooldownRemaining : 0f;
+    public float AttackCooldownDuration => _shootAction != null ? _shootAction.CooldownDuration : 0f;
+    public bool CanAttack => _shootAction != null && !_shootAction.IsOnCooldown;
 
     private void OnValidate()
     {
@@ -68,7 +71,4 @@ public class Player : MonoBehaviour
 
         _runtimeStats.ApplyDefinition(_statsDefinition);
     }
-
-    // TODO: 상호작용 컴포넌트 추가할 것
-    // TODO: 피격 처리 컴포넌트 추가할 것
 }

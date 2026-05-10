@@ -6,13 +6,43 @@ public class PlayerAimController : MonoBehaviour
 
     public Vector3 ResolveTargetPoint(Vector3 origin, Vector2 pointerScreenPosition)
     {
-        // TODO: 조준 카메라 기준 타겟 지점 계산할 것
-        return origin + transform.forward;
+        Camera aimCamera = _aimCamera != null ? _aimCamera : Camera.main;
+        if (aimCamera == null)
+        {
+            return origin + transform.forward;
+        }
+
+        Ray pointerRay = aimCamera.ScreenPointToRay(pointerScreenPosition);
+        Plane groundPlane = new Plane(Vector3.up, origin);
+
+        if (!groundPlane.Raycast(pointerRay, out float enter))
+        {
+            return origin + transform.forward;
+        }
+
+        return pointerRay.GetPoint(enter);
     }
 
     public Vector3 ResolveAimDirection(Vector3 origin, Vector3 targetPoint)
     {
-        // TODO: origin에서 targetPoint로 향하는 조준 방향 계산할 것
-        return transform.forward;
+        Vector3 aimDirection = targetPoint - origin;
+        aimDirection.y = 0f;
+
+        if (aimDirection.sqrMagnitude <= 0.0001f)
+        {
+            return transform.forward;
+        }
+
+        return aimDirection.normalized;
+    }
+
+    public void FaceDirection(Vector3 aimDirection)
+    {
+        if (aimDirection.sqrMagnitude <= 0.0001f)
+        {
+            return;
+        }
+
+        transform.forward = aimDirection;
     }
 }

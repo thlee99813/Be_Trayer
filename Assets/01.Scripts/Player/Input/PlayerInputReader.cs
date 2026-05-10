@@ -37,13 +37,21 @@ public class PlayerInputReader : MonoBehaviour
 
     public bool ReadShootPressedThisFrame()
     {
-        // TODO: 좌클릭 입력 연결할 것
-        return false;
+        if (Mouse.current == null)
+        {
+            return false;
+        }
+
+        return Mouse.current.leftButton.wasPressedThisFrame;
     }
 
     public Vector2 ReadPointerScreenPosition()
     {
-        // TODO: 포인터 좌표 읽기 연결할 것
-        return Vector2.zero;
+        if (Mouse.current == null)
+        {
+            return Vector2.zero;
+        }
+
+        return Mouse.current.position.ReadValue();
     }
 }
